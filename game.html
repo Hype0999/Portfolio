@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Sub-Site | In Development</title>
+    <style>
+        /* Import modern fonts from Google */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated Background Glow */
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(69, 252, 209, 0.1) 0%, rgba(11, 12, 16, 0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            animation: pulse 6s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
+        }
+
+        /* Glassmorphism Card */
+        .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 50px 40px;
+            border: 1px solid rgba(69, 252, 209, 0.2);
+            border-radius: 16px;
+            background: rgba(31, 40, 51, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+            max-width: 550px;
+            width: 90%;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: rgba(69, 252, 209, 0.1);
+            color: #45fcd1;
+            border: 1px solid #45fcd1;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif; /* Sci-fi gaming font */
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 16px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            color: #a0a3a8;
+        }
+
+        /* Animated Progress Bar */
+        .progress-wrapper {
+            margin-bottom: 35px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #45fcd1;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: #1f2833;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #45fcd1, #248a73);
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(69, 252, 209, 0.5);
+            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Action Button */
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0b0c10;
+            background-color: #45fcd1;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(69, 252, 209, 0.2);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn:hover {
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+    
+    <div class="container">
+        <div class="badge">Sector Offline</div>
+        <h1>Under Construction</h1>
+        <p>This sector of the website is currently in development. We are compiling assets, writing the core logic, and polishing the UI. Check back soon.</p>
+        
+        <div class="progress-wrapper">
+            <div class="progress-label">
+                <span>Initialization</span>
+                <span id="progressText">0%</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+        <a href="/" class="btn">Return to Main Hub</a>
+    </div>
+
+    <script>
+        // Trigger the progress bar animation after the page loads
+        document.addEventListener("DOMContentLoaded", () => {
+            const targetPercentage = 65; // You can change this value
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            setTimeout(() => {
+                progressBar.style.width = targetPercentage + '%';
+                
+                // Simple counter animation for the text
+                let current = 0;
+                const interval = setInterval(() => {
+                    if (current >= targetPercentage) {
+                        clearInterval(interval);
+                    } else {
+                        current++;
+                        progressText.innerText = current + '%';
+                    }
+                }, 2000 / targetPercentage); // Matches the 2s CSS transition
+            }, 400); // Slight delay for visual effect
+        });
+    </script>
+</body>
+</html>
