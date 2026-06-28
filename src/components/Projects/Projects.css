@@ -1,0 +1,301 @@
+/* ============================================================
+   Projects.css — Magazine-style Cards
+   ============================================================ */
+
+.projects {
+  position: relative;
+}
+
+/* ── Featured grid ───────────────────────────────────────── */
+.projects__grid {
+  display: grid;
+  gap: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+
+.projects__grid--featured {
+  grid-template-columns: 1fr;
+}
+
+.projects__grid--featured .project-card {
+  grid-column: 1;
+}
+
+/* Standard 2-col grid */
+.projects__grid--standard {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* ── Project card ─────────────────────────────────────────── */
+.project-card {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform    var(--duration-slow) var(--ease-out-expo),
+    box-shadow   var(--duration-slow) var(--ease-out-expo),
+    border-color var(--duration-base) var(--ease-in-out);
+}
+
+/* ── Editorial number ─────────────────────────────────────── */
+.project-card__num {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: var(--weight-black);
+  color: var(--color-text-primary);
+  opacity: 0.04;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: var(--tracking-tight);
+  transition: opacity var(--duration-slow) var(--ease-out-expo);
+}
+
+.project-card:hover .project-card__num,
+.project-card.is-mobile-hover .project-card__num {
+  opacity: 0.07;
+}
+
+/* ── Thumbnail ────────────────────────────────────────────── */
+.project-card__thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-surface-0);
+}
+
+.project-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.project-card:hover .project-card__img,
+.project-card.is-mobile-hover .project-card__img {
+  transform: scale(1.04);
+}
+
+.project-card__thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    var(--color-surface) 0%,
+    var(--color-surface-2) 100%
+  );
+  color: var(--color-text-tertiary);
+}
+
+/* Lock badge */
+.project-card__lock {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-overlay);
+  border: 1px solid var(--color-border-2);
+  border-radius: var(--radius-md);
+  color: var(--color-text-tertiary);
+  backdrop-filter: blur(8px);
+}
+
+/* ── Card body ────────────────────────────────────────────── */
+.project-card__body {
+  padding: var(--space-6) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  flex: 1;
+  word-break: break-word;
+}
+
+/* Meta row */
+.project-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.project-card__category {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-ultra);
+}
+
+.project-card__year {
+  color: var(--color-text-tertiary);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+/* Title */
+.project-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-xl), 2.5vw, var(--text-3xl));
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-snug);
+  line-height: var(--leading-snug);
+  margin: 0;
+  transition: color var(--duration-base) var(--ease-in-out);
+}
+
+.project-card:hover .project-card__title,
+.project-card.is-mobile-hover .project-card__title {
+  color: var(--color-text-primary);
+}
+
+.project-card__title--blur {
+  filter: blur(6px);
+  user-select: none;
+}
+
+/* Tagline */
+.project-card__tagline {
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 54ch;
+  margin: 0;
+}
+
+.project-card__tagline--blur {
+  filter: blur(4px);
+  user-select: none;
+}
+
+/* Tags */
+.project-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.project-card__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px var(--space-3);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  white-space: nowrap;
+  transition:
+    border-color var(--duration-base) var(--ease-in-out),
+    color        var(--duration-base) var(--ease-in-out);
+}
+
+.project-card:hover .project-card__tag,
+.project-card.is-mobile-hover .project-card__tag {
+  border-color: var(--color-border-2);
+  color: var(--color-text-secondary);
+}
+
+/* Footer */
+.project-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Status */
+.project-card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  letter-spacing: var(--tracking-wide);
+}
+
+.project-card__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-text-tertiary);
+}
+
+.project-card__status--completed .project-card__status-dot {
+  background: var(--color-status-green);
+  box-shadow: 0 0 6px var(--color-status-green);
+}
+
+.project-card__status--ongoing .project-card__status-dot {
+  background: var(--color-amber);
+  box-shadow: 0 0 6px var(--color-glow-amber);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.project-card__status--archived .project-card__status-dot {
+  background: var(--color-text-tertiary);
+}
+
+/* CTA link */
+.project-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-accent);
+  text-decoration: none;
+  transition:
+    color     var(--duration-base) var(--ease-in-out),
+    gap       var(--duration-base) var(--ease-out-expo);
+}
+
+.project-card__link:hover,
+.project-card.is-mobile-hover .project-card__link {
+  color: var(--color-accent-hover);
+  gap: var(--space-3);
+}
+
+/* ── Featured card — extra large ─────────────────────────── */
+.project-card--featured .project-card__thumb {
+  aspect-ratio: 16 / 9;
+}
+
+.project-card--featured .project-card__title {
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+}
+
+/* ── Locked card ──────────────────────────────────────────── */
+.project-card--locked {
+  opacity: 0.75;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .projects__grid--standard {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card--featured .project-card__thumb {
+    aspect-ratio: 16 / 9;
+  }
+
+  .project-card__body {
+    padding: var(--space-5) var(--space-5);
+  }
+}

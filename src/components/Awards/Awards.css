@@ -1,0 +1,81 @@
+/* ============================================================
+   Awards.css — Awards Section Component
+   ============================================================ */
+
+.awards__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  max-width: 800px;
+}
+
+/* ----------------------------------------------------------
+   Award Item (Liquid Glass)
+---------------------------------------------------------- */
+
+.award-item {
+  padding: var(--space-8);
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: relative;
+}
+
+.award-item__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.award-item__project-name {
+  margin-bottom: var(--space-4);
+}
+
+.award-item__title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-snug);
+  margin-bottom: var(--space-2);
+}
+
+.award-item__issuer {
+  font-size: var(--text-base);
+  color: var(--color-accent);
+  font-weight: var(--weight-medium);
+}
+
+.award-item__year {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  letter-spacing: var(--tracking-wider);
+  flex-shrink: 0;
+  padding: 4px 12px;
+  background: var(--color-surface-2);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+}
+
+.award-item__description {
+  max-width: 60ch;
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+  font-size: var(--text-base);
+}
+
+.award-item__link {
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  font-weight: var(--weight-medium);
+  transition: color var(--duration-base) var(--ease-in-out);
+  align-self: flex-start;
+  margin-top: var(--space-2);
+}
+
+.award-item__link:hover,
+.award-item.is-mobile-hover .award-item__link {
+  color: var(--color-accent-hover);
+}

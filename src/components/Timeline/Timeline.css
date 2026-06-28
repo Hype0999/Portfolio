@@ -1,0 +1,314 @@
+/* ============================================================
+   Timeline.css — Vertical Connector Timeline
+   ============================================================ */
+
+.timeline {
+  position: relative;
+}
+
+/* ── Vertical track ──────────────────────────────────────── */
+.timeline__track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding-block: var(--space-8);
+}
+
+/* Animated vertical connector line */
+.timeline__line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.timeline__line-fill {
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(
+    to bottom,
+    var(--color-accent),
+    hsla(258, 70%, 60%, 0.3),
+    transparent
+  );
+  border-radius: var(--radius-full);
+  transition: height 0.1s ease-out;
+}
+
+/* ── Individual entry ─────────────────────────────────────── */
+.timeline__entry {
+  position: relative;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 48px 1fr;
+  align-items: start;
+  gap: var(--space-6);
+  padding-block: var(--space-6);
+}
+
+/* Left entries: card on left side */
+.timeline__entry--left .timeline__card {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+}
+
+.timeline__entry--left .timeline__node {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.timeline__entry--left::after {
+  content: '';
+  grid-column: 3;
+}
+
+/* Right entries: card on right side */
+.timeline__entry--right .timeline__card {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.timeline__entry--right .timeline__node {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.timeline__entry--right::before {
+  content: '';
+  grid-column: 1;
+}
+
+/* ── Connector node ───────────────────────────────────────── */
+.timeline__node {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: var(--space-6);
+  position: relative;
+}
+
+.timeline__node-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-surface-3);
+  border: 2px solid var(--color-border-2);
+  transition:
+    background     var(--duration-slow) var(--ease-out-expo),
+    border-color   var(--duration-slow) var(--ease-out-expo),
+    box-shadow     var(--duration-slow) var(--ease-out-expo);
+}
+
+.timeline__entry:hover .timeline__node-dot {
+  background: var(--color-accent-dim);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 12px var(--color-glow-violet);
+}
+
+/* Active (current) node */
+.timeline__node--active .timeline__node-dot {
+  background: var(--color-accent);
+  border-color: var(--color-accent-hover);
+  box-shadow: 0 0 0 4px var(--color-accent-dim),
+              0 0 16px var(--color-glow-violet);
+}
+
+/* Pulse ring on active */
+.timeline__node--active::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--space-6) - 8px);
+  left: calc(50% - 14px);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--color-accent);
+  animation: timeline-pulse 2.5s var(--ease-out-expo) infinite;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.timeline__card {
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--radius-xl);
+  word-break: break-word;
+  transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo);
+}
+
+/* Scrolled-into-view card gets accent glow */
+.timeline__card--highlighted {
+  border-color: var(--color-accent-border) !important;
+  box-shadow:
+    inset 0 1px 0 var(--glass-edge-top),
+    0 0 0 1px var(--color-accent-border),
+    0 8px 32px var(--color-glow-violet),
+    0 24px 64px hsla(220, 60%, 4%, 0.5) !important;
+  transform: scale(1.02);
+}
+
+/* Current card gets chasing neon border */
+@property --chase-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes timeline-chase {
+  to { --chase-angle: 360deg; }
+}
+
+.timeline__card--current {
+  position: relative;
+}
+
+.timeline__card--current::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-xl);
+  padding: 2px;
+  background: conic-gradient(
+    from var(--chase-angle),
+    transparent 0%,
+    transparent 75%,
+    var(--color-accent) 95%,
+    #b388ff 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: timeline-chase 3s linear infinite;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px var(--color-glow-violet));
+}
+
+/* ── Card meta ────────────────────────────────────────────── */
+.timeline__card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+
+/* Right-aligned entries reverse the meta row */
+.timeline__entry--left .timeline__card-meta {
+  justify-content: flex-end;
+}
+
+.timeline__year {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+}
+
+.timeline__type {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-full);
+}
+
+.timeline__current-badge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background: var(--color-accent-dim);
+  border: 1px solid var(--color-accent-border);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ── Card content ─────────────────────────────────────────── */
+.timeline__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-snug);
+  line-height: var(--leading-snug);
+  margin: 0 0 var(--space-2) 0;
+  color: var(--color-text-primary);
+}
+
+.timeline__org {
+  color: var(--color-text-secondary);
+  font-weight: var(--weight-medium);
+  margin-bottom: var(--space-2);
+}
+
+.timeline__description {
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* ── Tag ──────────────────────────────────────────────────── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--space-3);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  line-height: 1.6;
+}
+
+.tag--accent {
+  background: var(--color-accent-dim);
+  border-color: var(--color-accent-border);
+  color: var(--color-accent);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .timeline__entry {
+    grid-template-columns: 24px 1fr;
+    gap: var(--space-4);
+  }
+
+  .timeline__line {
+    left: 12px;
+    transform: none;
+  }
+
+  .timeline__entry--left .timeline__card,
+  .timeline__entry--right .timeline__card {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .timeline__entry--left .timeline__node,
+  .timeline__entry--right .timeline__node {
+    grid-column: 1;
+  }
+
+  .timeline__entry--left .timeline__card-meta,
+  .timeline__entry--right .timeline__card-meta {
+    justify-content: flex-start;
+  }
+
+  .timeline__entry--left::after,
+  .timeline__entry--right::before {
+    display: none;
+  }
+
+  .timeline__node--active::before {
+    left: calc(50% - 14px);
+    top: calc(var(--space-6) - 8px);
+  }
+}

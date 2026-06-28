@@ -1,0 +1,209 @@
+/* ============================================================
+   tokens.css — Design Token System (Premium Dark)
+   Deep navy-graphite. Dual accent: violet + amber.
+   Apple VisionOS-style glass surfaces.
+   ============================================================ */
+
+:root {
+
+  /* ----------------------------------------------------------
+     COLOR — Background & Surfaces
+  ---------------------------------------------------------- */
+  --color-bg:          hsl(220, 20%, 7%);
+  --color-surface-0:   hsl(220, 18%, 9%);
+  --color-surface:     hsl(220, 16%, 11%);
+  --color-surface-2:   hsl(220, 14%, 14%);
+  --color-surface-3:   hsl(220, 12%, 18%);
+  --color-surface-4:   hsl(220, 10%, 24%);
+  --color-overlay:     hsla(220, 30%, 4%, 0.80);
+
+  /* ----------------------------------------------------------
+     COLOR — Liquid Glass
+  ---------------------------------------------------------- */
+  --glass-fill:           hsla(220, 30%, 98%, 0.05);
+  --glass-fill-hover:     hsla(220, 30%, 98%, 0.08);
+  --glass-edge-top:       hsla(220, 40%, 98%, 0.14);
+  --glass-edge-bottom:    hsla(220, 20%, 4%, 0.12);
+  --glass-rim:            hsla(220, 30%, 98%, 0.10);
+  --glass-chroma-violet:  hsla(258, 80%, 80%, 0.05);
+  --glass-chroma-amber:   hsla(38, 90%, 75%, 0.04);
+  --backdrop-blur:        blur(32px) saturate(180%) brightness(1.04);
+  --backdrop-blur-heavy:  blur(48px) saturate(200%) brightness(1.06);
+
+  /* Legacy */
+  --color-glass-bg:       hsla(220, 20%, 12%, 0.55);
+  --color-glass-bg-2:     hsla(220, 20%, 16%, 0.70);
+  --color-glass-border:   hsla(220, 40%, 80%, 0.10);
+  --color-glass-border-2: hsla(220, 40%, 80%, 0.18);
+
+  /* ----------------------------------------------------------
+     COLOR — Borders
+  ---------------------------------------------------------- */
+  --color-border:      hsl(220, 16%, 14%);
+  --color-border-2:    hsl(220, 14%, 20%);
+  --color-border-3:    hsl(220, 12%, 28%);
+
+  /* ----------------------------------------------------------
+     COLOR — Text
+  ---------------------------------------------------------- */
+  --color-text-primary:   hsl(220, 12%, 96%);
+  --color-text-secondary: hsl(220, 10%, 66%);
+  --color-text-tertiary:  hsl(220, 8%, 42%);
+  --color-text-inverse:   hsl(220, 20%, 7%);
+
+  /* ----------------------------------------------------------
+     COLOR — Accent: Violet + Amber
+  ---------------------------------------------------------- */
+  --color-accent:           hsl(258, 78%, 68%);
+  --color-accent-hover:     hsl(258, 82%, 74%);
+  --color-accent-dim:       hsla(258, 70%, 60%, 0.14);
+  --color-accent-border:    hsla(258, 70%, 65%, 0.35);
+  --color-glow-violet:      hsla(258, 80%, 60%, 0.30);
+
+  --color-amber:            hsl(38, 88%, 62%);
+  --color-amber-hover:      hsl(38, 92%, 68%);
+  --color-amber-dim:        hsla(38, 80%, 55%, 0.14);
+  --color-amber-border:     hsla(38, 75%, 55%, 0.35);
+  --color-glow-amber:       hsla(38, 85%, 55%, 0.28);
+
+  /* Legacy */
+  --color-accent-bg:        var(--color-accent-dim);
+  --color-accent-glow:      var(--color-glow-violet);
+  --color-highlight-bg:     hsla(258, 70%, 60%, 0.14);
+  --color-highlight-border: hsla(258, 65%, 65%, 0.30);
+
+  /* ----------------------------------------------------------
+     COLOR — Status
+  ---------------------------------------------------------- */
+  --color-status-green: hsl(145, 80%, 52%);
+  --color-status-amber: hsl(38, 90%, 62%);
+  --color-status-red:   hsl(0, 80%, 62%);
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY
+  ---------------------------------------------------------- */
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --text-xs:    0.6875rem;
+  --text-sm:    0.8125rem;
+  --text-base:  1rem;
+  --text-lg:    1.125rem;
+  --text-xl:    1.25rem;
+  --text-2xl:   1.5rem;
+  --text-3xl:   2rem;
+  --text-4xl:   2.75rem;
+  --text-5xl:   3.75rem;
+  --text-6xl:   5rem;
+  --text-7xl:   6.5rem;
+  --text-hero:  clamp(3.5rem, 8vw, 7.5rem);
+  --text-giant: clamp(4.5rem, 11vw, 9.5rem);
+
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-black:    800;
+
+  --tracking-tight:   -0.04em;
+  --tracking-snug:    -0.02em;
+  --tracking-normal:   0em;
+  --tracking-wide:     0.05em;
+  --tracking-wider:    0.10em;
+  --tracking-widest:   0.16em;
+  --tracking-ultra:    0.22em;
+
+  --leading-none:    1;
+  --leading-tight:   1.05;
+  --leading-snug:    1.2;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.75;
+
+  /* ----------------------------------------------------------
+     SPACING
+  ---------------------------------------------------------- */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-section:    clamp(6rem, 14vh, 12rem);
+  --space-container:  clamp(1.5rem, 5vw, 6rem);
+  --max-width:        1360px;
+  --max-width-text:   680px;
+
+  /* ----------------------------------------------------------
+     BORDER RADIUS
+  ---------------------------------------------------------- */
+  --radius-xs:   3px;
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-xl:   26px;
+  --radius-2xl:  36px;
+  --radius-full: 9999px;
+
+  /* ----------------------------------------------------------
+     SHADOWS
+  ---------------------------------------------------------- */
+  --shadow-xs:   0 1px 2px hsla(220, 60%, 2%, 0.45);
+  --shadow-sm:   0 1px 4px hsla(220, 60%, 2%, 0.50), 0 2px 8px hsla(220, 60%, 2%, 0.28);
+  --shadow-md:   0 4px 12px hsla(220, 60%, 2%, 0.55), 0 8px 24px hsla(220, 60%, 2%, 0.32);
+  --shadow-lg:   0 8px 24px hsla(220, 60%, 2%, 0.60), 0 20px 48px hsla(220, 60%, 2%, 0.38);
+  --shadow-xl:   0 20px 48px hsla(220, 60%, 2%, 0.65), 0 40px 80px hsla(220, 60%, 2%, 0.48);
+  --shadow-glow-violet: 0 0 0 1px var(--color-accent-border),
+                        0 4px 24px var(--color-glow-violet),
+                        0 8px 48px hsla(258, 80%, 40%, 0.15);
+  --shadow-glow-amber:  0 0 0 1px var(--color-amber-border),
+                        0 4px 24px var(--color-glow-amber),
+                        0 8px 48px hsla(38, 80%, 40%, 0.15);
+  --shadow-glass: 0 8px 32px hsla(220, 60%, 2%, 0.55),
+                  inset 0 1px 0 var(--glass-edge-top),
+                  inset 0 -1px 0 var(--glass-edge-bottom);
+  --shadow-glow: var(--shadow-glow-violet);
+
+  /* ----------------------------------------------------------
+     MOTION
+  ---------------------------------------------------------- */
+  --ease-out-expo:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart:   cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out:      cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring:      cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-decel:       cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-elastic:     cubic-bezier(0.5, 1.8, 0.5, 0.8);
+
+  --duration-instant: 0ms;
+  --duration-fast:    100ms;
+  --duration-base:    220ms;
+  --duration-slow:    400ms;
+  --duration-reveal:  700ms;
+  --duration-page:    1000ms;
+
+  /* ----------------------------------------------------------
+     Z-INDEX
+  ---------------------------------------------------------- */
+  --z-below:       -1;
+  --z-base:        0;
+  --z-raised:      10;
+  --z-adaptive:    50;
+  --z-overlay:     100;
+  --z-nav:         200;
+  --z-modal:       300;
+  --z-toast:       400;
+
+  --tilt-x:       0deg;
+  --tilt-y:       0deg;
+  --tilt-glow-x:  50%;
+  --tilt-glow-y:  50%;
+  --canvas-opacity: 1;
+}

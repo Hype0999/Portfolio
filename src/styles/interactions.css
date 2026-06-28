@@ -1,0 +1,371 @@
+/* ============================================================
+   interactions.css — Apple Liquid Glass + Premium Interactions
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   APPLE LIQUID GLASS
+   Multi-layer construction: fill + chromatic + edge highlights + depth shadow.
+   The real VisionOS recipe.
+---------------------------------------------------------- */
+
+.liquid-glass {
+  position: relative;
+  background:
+    /* Chromatic violet tint (top-left) */
+    radial-gradient(ellipse at 20% 20%, var(--glass-chroma-violet) 0%, transparent 60%),
+    /* Chromatic amber tint (bottom-right) */
+    radial-gradient(ellipse at 80% 80%, var(--glass-chroma-amber) 0%, transparent 60%),
+    /* Base glass fill */
+    var(--glass-fill);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  border: 1px solid var(--glass-rim);
+  box-shadow:
+    /* Top edge — refracted light */
+    inset 0 1px 0 var(--glass-edge-top),
+    /* Bottom edge — shadow absorption */
+    inset 0 -1px 0 var(--glass-edge-bottom),
+    /* Outer depth shadow */
+    0 24px 64px hsla(220, 60%, 4%, 0.55),
+    0 4px 16px hsla(220, 60%, 4%, 0.30);
+  isolation: isolate;
+}
+
+/* Animated shimmer sweep on hover */
+.liquid-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    hsla(220, 40%, 98%, 0.04) 45%,
+    hsla(220, 40%, 98%, 0.07) 50%,
+    hsla(220, 40%, 98%, 0.04) 55%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease-out-expo);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.liquid-glass:hover::before,
+.liquid-glass.is-mobile-hover::before {
+  opacity: 1;
+}
+
+/* Hover state — lifts and brightens */
+.liquid-glass-lift {
+  transition:
+    transform     var(--duration-slow) var(--ease-out-expo),
+    box-shadow    var(--duration-slow) var(--ease-out-expo),
+    border-color  var(--duration-base) var(--ease-in-out);
+}
+
+.liquid-glass-lift:hover,
+.liquid-glass-lift.is-mobile-hover {
+  transform: translateY(-5px) scale(1.01);
+  border-color: hsla(220, 40%, 98%, 0.18);
+  box-shadow:
+    inset 0 1px 0 hsla(220, 40%, 98%, 0.20),
+    inset 0 -1px 0 var(--glass-edge-bottom),
+    0 32px 80px hsla(220, 60%, 4%, 0.65),
+    0 8px 32px hsla(220, 60%, 4%, 0.40);
+}
+
+/* ----------------------------------------------------------
+   Glass Panel (legacy compat)
+---------------------------------------------------------- */
+.glass-panel {
+  background: var(--color-glass-bg);
+  backdrop-filter: var(--backdrop-blur);
+  -webkit-backdrop-filter: var(--backdrop-blur);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: var(--shadow-glass);
+}
+
+.glass-panel--heavy {
+  background: var(--color-glass-bg-2);
+  backdrop-filter: var(--backdrop-blur-heavy);
+  -webkit-backdrop-filter: var(--backdrop-blur-heavy);
+  border: 1px solid var(--color-glass-border-2);
+}
+
+/* Glass lift (legacy) */
+.glass-lift {
+  transition:
+    transform     var(--duration-slow) var(--ease-out-expo),
+    box-shadow    var(--duration-slow) var(--ease-out-expo),
+    border-color  var(--duration-base) var(--ease-in-out);
+}
+
+.glass-lift:hover,
+.glass-lift.is-mobile-hover {
+  transform: translateY(-4px) translateZ(0);
+  box-shadow:
+    var(--shadow-glass),
+    0 20px 60px hsla(0, 0%, 0%, 0.5);
+  border-color: var(--color-glass-border-2);
+}
+
+/* ----------------------------------------------------------
+   CARD TILT (3D perspective hover)
+   JS drives --tilt-x, --tilt-y, --tilt-glow-x, --tilt-glow-y
+---------------------------------------------------------- */
+
+.tilt-card {
+  transform-style: preserve-3d;
+  transform:
+    perspective(1200px)
+    rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg));
+  transition:
+    transform 0.08s ease-out,
+    box-shadow var(--duration-slow) var(--ease-out-expo);
+}
+
+.tilt-card--reset {
+  transform:
+    perspective(1200px)
+    rotateX(0deg)
+    rotateY(0deg);
+  transition:
+    transform var(--duration-slow) var(--ease-out-expo);
+}
+
+/* Specular highlight that moves with tilt */
+.tilt-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--tilt-glow-x, 50%) var(--tilt-glow-y, 50%),
+    hsla(258, 60%, 80%, 0.07) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 1;
+  transition: background 0.08s ease-out;
+}
+
+/* ----------------------------------------------------------
+   MAGNETIC BUTTON
+---------------------------------------------------------- */
+
+.btn-magnetic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform        var(--duration-base) var(--ease-out-expo),
+    box-shadow       var(--duration-slow) var(--ease-out-expo),
+    background-color var(--duration-base) var(--ease-in-out);
+  will-change: transform;
+}
+
+/* Sweep shimmer on hover */
+.btn-magnetic::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsla(220, 40%, 98%, 0.10),
+    transparent
+  );
+  transition: left var(--duration-slow) var(--ease-out-expo);
+}
+
+.btn-magnetic:hover::after,
+.btn-magnetic.is-mobile-hover::after {
+  left: 150%;
+}
+
+.btn-magnetic:active {
+  transform: scale(0.97);
+  transition-duration: 60ms;
+}
+
+/* ----------------------------------------------------------
+   PREMIUM BUTTON
+---------------------------------------------------------- */
+
+.btn-premium {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    background-color var(--duration-base) var(--ease-in-out),
+    transform        var(--duration-base) var(--ease-out-expo),
+    box-shadow       var(--duration-slow) var(--ease-out-expo);
+}
+
+.btn-premium::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    hsla(258, 60%, 80%, 0.14) 0%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-in-out);
+}
+
+.btn-premium:hover,
+.btn-premium.is-mobile-hover {
+  transform: translateY(-2px);
+}
+
+.btn-premium:hover::after,
+.btn-premium.is-mobile-hover::after {
+  opacity: 1;
+}
+
+.btn-premium:active {
+  transform: translateY(0);
+  transition-duration: 60ms;
+}
+
+/* ----------------------------------------------------------
+   ICON HOVER GLOW
+---------------------------------------------------------- */
+
+.icon-glow {
+  transition:
+    color       var(--duration-base) var(--ease-in-out),
+    filter      var(--duration-slow) var(--ease-out-expo),
+    transform   var(--duration-base) var(--ease-out-expo);
+}
+
+.icon-glow:hover,
+.icon-glow.is-mobile-hover {
+  color: var(--color-accent);
+  filter: drop-shadow(0 0 8px var(--color-glow-violet));
+  transform: scale(1.12);
+}
+
+/* ----------------------------------------------------------
+   SKILL CHIP
+---------------------------------------------------------- */
+
+.skill-chip {
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color  var(--duration-base) var(--ease-in-out),
+    background    var(--duration-base) var(--ease-in-out),
+    transform     var(--duration-base) var(--ease-out-expo),
+    box-shadow    var(--duration-slow) var(--ease-out-expo);
+}
+
+.skill-chip:hover,
+.skill-chip.is-mobile-hover {
+  border-color: var(--color-accent-border);
+  background: var(--color-accent-dim);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px var(--color-glow-violet);
+}
+
+.skill-chip::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsla(258, 60%, 80%, 0.09),
+    transparent
+  );
+  transition: left var(--duration-slow) var(--ease-out-expo);
+}
+
+.skill-chip:hover::after,
+.skill-chip.is-mobile-hover::after {
+  left: 150%;
+}
+
+/* ----------------------------------------------------------
+   CURSOR GLOW FOLLOWER
+---------------------------------------------------------- */
+
+.cursor-glow {
+  position: fixed;
+  pointer-events: none;
+  z-index: var(--z-overlay);
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    hsla(258, 80%, 65%, 0.08) 0%,
+    transparent 65%
+  );
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+  will-change: transform;
+}
+
+/* ----------------------------------------------------------
+   TIMELINE NODE PULSE
+---------------------------------------------------------- */
+
+.timeline-node--active::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid var(--color-accent);
+  animation: timeline-pulse 2.5s var(--ease-out-expo) infinite;
+  pointer-events: none;
+}
+
+@keyframes timeline-pulse {
+  0%   { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2.4); }
+}
+
+/* ----------------------------------------------------------
+   GRADIENT BORDER
+---------------------------------------------------------- */
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    hsla(258, 80%, 68%, 0.50),
+    hsla(258, 60%, 50%, 0.20),
+    hsla(38, 80%, 62%, 0.35)
+  );
+  z-index: -1;
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease-out-expo);
+}
+
+.gradient-border:hover::after,
+.gradient-border.is-mobile-hover::after {
+  opacity: 1;
+}

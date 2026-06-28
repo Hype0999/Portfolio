@@ -1,0 +1,15 @@
+/* ============================================================
+   main.css — Root Stylesheet
+   ============================================================
+   Imports all stylesheets in dependency order.
+   Do not add styles here — use the appropriate stylesheet instead.
+   ============================================================ */
+
+@import './tokens.css';
+@import './reset.css';
+@import './typography.css';
+@import './animations.css';
+@import './utilities.css';
+@import './interactions.css';
+@import './highlights.css';
+

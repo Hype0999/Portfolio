@@ -1,0 +1,146 @@
+/* ============================================================
+   Philosophy.css — Apple-Grade Bento Grid
+   ============================================================ */
+
+.philosophy {
+  position: relative;
+}
+
+/* ── Featured statement ─────────────────────────────────── */
+.philosophy__statement-tile {
+  border-radius: var(--radius-xl);
+  padding: var(--space-12) var(--space-12);
+  margin-bottom: var(--space-5);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Left accent line */
+.philosophy__statement-tile::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 32px;
+  bottom: 32px;
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-accent),
+    var(--color-amber)
+  );
+  border-radius: var(--radius-full);
+  opacity: 0.8;
+}
+
+.philosophy__statement-tag {
+  margin-bottom: var(--space-6);
+}
+
+.philosophy__statement {
+  margin: 0;
+  padding: 0;
+}
+
+.philosophy__statement p {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-xl), 3vw, var(--text-3xl));
+  font-weight: var(--weight-medium);
+  line-height: 1.35;
+  color: var(--color-text-primary);
+  font-style: normal;
+  max-width: 48ch;
+  letter-spacing: var(--tracking-snug);
+}
+
+.philosophy__statement-deco {
+  position: absolute;
+  right: var(--space-10);
+  top: var(--space-5);
+}
+
+.philosophy__quote-mark {
+  font-family: var(--font-display);
+  font-size: 8rem;
+  font-weight: var(--weight-black);
+  color: var(--color-text-primary);
+  opacity: 0.03;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── 2×2 grid ───────────────────────────────────────────── */
+.philosophy__bento {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+
+.philosophy__tile {
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+/* Icon */
+.philosophy__tile-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border-2);
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+  transition: 
+    color var(--duration-base) var(--ease-in-out),
+    border-color var(--duration-base) var(--ease-in-out),
+    box-shadow var(--duration-slow) var(--ease-out-expo);
+}
+
+.philosophy__tile:hover .philosophy__tile-icon,
+.philosophy__tile.is-mobile-hover .philosophy__tile-icon {
+  color: var(--tile-color, var(--color-amber));
+  border-color: var(--tile-glow, hsla(38, 92%, 68%, 0.3));
+  box-shadow: 0 0 16px var(--tile-glow, var(--color-glow-amber));
+}
+
+.philosophy__tile-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+  letter-spacing: var(--tracking-snug);
+  line-height: 1.2;
+}
+
+.philosophy__tile-body {
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  flex: 1;
+}
+
+.philosophy__tile-num {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-8);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  letter-spacing: var(--tracking-wider);
+  opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+  .philosophy__bento { grid-template-columns: 1fr; }
+  .philosophy__statement-tile { padding: var(--space-8); }
+  .philosophy__quote-mark { display: none; }
+}

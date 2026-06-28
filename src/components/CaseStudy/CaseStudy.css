@@ -1,0 +1,235 @@
+/* ============================================================
+   CaseStudy.css — Case Study Page Component
+   ============================================================ */
+
+.case-study {
+  padding-top: var(--space-32); /* Space for nav */
+  padding-bottom: var(--space-24);
+}
+
+/* ----------------------------------------------------------
+   Header
+---------------------------------------------------------- */
+
+.case-study__header {
+  margin-bottom: var(--space-24);
+  max-width: 800px;
+}
+
+.case-study__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.case-study__year {
+  color: var(--color-text-tertiary);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+}
+
+.case-study__title {
+  margin-bottom: var(--space-6);
+}
+
+.case-study__tagline {
+  font-size: var(--text-xl);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-8);
+}
+
+.case-study__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* ----------------------------------------------------------
+   Content Grid
+---------------------------------------------------------- */
+
+.case-study__content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: clamp(4rem, 8vw, 8rem);
+  margin-bottom: var(--space-24);
+}
+
+/* ----------------------------------------------------------
+   Main Column
+---------------------------------------------------------- */
+
+.case-study__main-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.case-study__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.case-study__section-title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-snug);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-4);
+}
+
+.case-study__text {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 65ch;
+}
+
+.case-study__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.case-study__list-item {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  padding-left: var(--space-4);
+  position: relative;
+  max-width: 65ch;
+}
+
+.case-study__list-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--color-border-2);
+}
+
+/* ----------------------------------------------------------
+   Side Column
+---------------------------------------------------------- */
+
+.case-study__side-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+/* ----------------------------------------------------------
+   Engineering Presentation (Book III Phase 1)
+---------------------------------------------------------- */
+
+.case-study__spec-sheet {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-8);
+  margin-bottom: var(--space-16);
+  padding: var(--space-8);
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.case-study__spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.case-study__spec-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.case-study__spec-value {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+}
+
+.case-study__architecture {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-16);
+  padding: var(--space-8);
+  background: var(--color-surface-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.case-study__arch-node {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border-2);
+  border-radius: var(--radius-sm);
+}
+
+.case-study__arch-arrow {
+  color: var(--color-text-tertiary);
+}
+
+/* ----------------------------------------------------------
+   Media Gallery
+---------------------------------------------------------- */
+
+.case-study__media {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+.case-study__media-item {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-2);
+}
+
+.case-study__media-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ----------------------------------------------------------
+   Responsive
+---------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+  .case-study__content {
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+  }
+  
+  .case-study__side-col {
+    order: -1; /* Put specs before the long read on mobile */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 767px) {
+  .case-study__side-col {
+    grid-template-columns: 1fr;
+  }
+}
