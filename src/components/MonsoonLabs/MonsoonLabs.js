@@ -67,7 +67,7 @@ export function MonsoonLabs() {
         </div>
         
         <div class="monsoon-labs__visual liquid-glass liquid-glass-lift tilt-card gradient-border" data-tilt>
-          <img src="/assets/monsoon-labs.jpg" alt="Monsoon Labs Logo" class="monsoon-labs__img" style="width: 100%; height: 100%; object-fit: cover; display: block; z-index: 2; transition: transform 0.4s ease-out;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+          <img src="./assets/monsoon-labs.jpg" alt="Monsoon Labs Logo" class="monsoon-labs__img" style="width: 100%; height: 100%; object-fit: cover; display: block; z-index: 2; transition: transform 0.4s ease-out;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
           <div class="monsoon-labs__placeholder-art" style="display: none;">
             <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.5">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linejoin="round" stroke-linecap="round"/>

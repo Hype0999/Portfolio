@@ -25,7 +25,7 @@ export const projects = [
     category: 'electrical',
     year: 2025,
     tags: ['ESP8266', 'Thermal Control', 'Power Efficiency', 'User Comfort'],
-    thumbnail: '/assets/stinky-shoes.jpg',
+    thumbnail: './assets/stinky-shoes.jpg',
     featured: true,
     status: 'completed',
     visibility: 'public',
@@ -67,7 +67,7 @@ export const projects = [
         'OP Jindal University Silver Medal (District Level)'
       ],
       media: {
-        heroImage: '/assets/stinky-shoes.jpg',
+        heroImage: './assets/stinky-shoes.jpg',
         gallery: [],
         breadboardImages: [],
         pcbRenders: [],
@@ -85,7 +85,7 @@ export const projects = [
     category: 'systems',
     year: 2023,
     tags: ['Arduino Mega', 'Road Safety', 'Hardware Debouncing', 'User Interface'],
-    thumbnail: '/assets/smart-bicycle.jpg',
+    thumbnail: './assets/smart-bicycle.jpg',
     featured: true,
     status: 'completed',
     visibility: 'public',
@@ -127,7 +127,7 @@ export const projects = [
         'INSPIRE selection'
       ],
       media: {
-        heroImage: '/assets/smart-bicycle.jpg',
+        heroImage: './assets/smart-bicycle.jpg',
         gallery: [],
         breadboardImages: [],
         pcbRenders: [],
@@ -145,7 +145,7 @@ export const projects = [
     category: 'systems',
     year: 2024,
     tags: ['ESP32', 'Raspberry Pi', 'Relay Sequencing', 'Power Management'],
-    thumbnail: '/assets/pi-control.jpg',
+    thumbnail: './assets/pi-control.jpg',
     featured: false,
     status: 'ongoing',
     visibility: 'public',
@@ -184,7 +184,7 @@ export const projects = [
       ],
       awards: [],
       media: {
-        heroImage: '/assets/pi-control.jpg',
+        heroImage: './assets/pi-control.jpg',
         gallery: [],
         breadboardImages: [],
         pcbRenders: [],
@@ -202,7 +202,7 @@ export const projects = [
     category: 'systems',
     year: 2026,
     tags: ['ESP32', 'Ultrasonic Sensing', 'Automation', 'Motor Protection'],
-    thumbnail: '/assets/smart-water-tank.jpg',
+    thumbnail: './assets/smart-water-tank.jpg',
     featured: false,
     status: 'ongoing',
     visibility: 'public',
@@ -240,7 +240,7 @@ export const projects = [
       ],
       awards: [],
       media: {
-        heroImage: '/assets/smart-water-tank.jpg',
+        heroImage: './assets/smart-water-tank.jpg',
         gallery: [],
         breadboardImages: [],
         pcbRenders: [],
